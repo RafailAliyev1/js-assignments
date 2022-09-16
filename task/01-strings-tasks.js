@@ -223,23 +223,23 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-    let low = 'abcdefghijklmnopqrstuvwxyz';
-    let up = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let lowcase = 'abcdefghijklmnopqrstuvwxyz';
+    let upcase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     
-    let encodedStr = '';
+    let resStr = '';
     for (let i = 0; i < str.length; i++) {
         let char = str.charAt(i);
         let index;
-        if ((index = up.indexOf(char)) !== -1) {
-            encodedStr += up.charAt((index + 13) % 26);
-        } else if ((index = low.indexOf(char)) !== -1) {
-            encodedStr += low.charAt((index + 13) % 26);
+        if ((index = upcase.indexOf(char)) !== -1) {
+            resStr += upcase.charAt((index + 13) % 26);
+        } else if ((index = lowcase.indexOf(char)) !== -1) {
+            resStr += lowcase.charAt((index + 13) % 26);
         } else {
-            encodedStr += char;
+            resStr += char;
         }
     }
 
-    return encodedStr;
+    return resStr;
 }
 
 /**
@@ -286,10 +286,10 @@ function isString(value) {
  */
 function getCardId(value) {
     let cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-    let signs = ['♣', '♦', '♥', '♠'];
+    let symbols = ['♣', '♦', '♥', '♠'];
     let cardChar = value.substring(0, value.length - 1);
     let signChar = value.substring(value.length - 1, value.length);
-    return cards.indexOf(cardChar) + cards.length * signs.indexOf(signChar);
+    return cards.indexOf(cardChar) + cards.length * symbols.indexOf(signChar);
 }
 
 
